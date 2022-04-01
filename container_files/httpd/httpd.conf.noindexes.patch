@@ -1,0 +1,11 @@
+--- httpd.conf.20200720	2020-07-19 14:50:57.470136000 +0000
++++ httpd.conf	2020-07-19 14:51:35.994475000 +0000
+@@ -141,7 +141,7 @@
+     # http://httpd.apache.org/docs/2.4/mod/core.html#options
+     # for more information.
+     #
+-    Options Indexes FollowSymLinks
++    Options FollowSymLinks
+ 
+     #
+     # AllowOverride controls what directives may be placed in .htaccess files.

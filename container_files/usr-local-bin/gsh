@@ -1,0 +1,22 @@
+#!/bin/bash
+
+prep_daemon
+prep_finish
+setupFiles
+runCommand_unsetAll
+
+export GSH_JVMARGS="$GSH_JVMARGS -DENV=$ENV -DUSERTOKEN=$USERTOKEN"
+
+# capture result of gsh, not tee
+set -o pipefail
+
+# openshift cannot do whoami
+if [ "$GROUPER_GSH_CHECK_USER" = "true"  ] && [ "$GROUPER_GSH_USER" != "$(whoami)" ]
+  then
+    echo "grouperContainer; INFO: (gsh file) sudo --preserve-env -u tomcat bin/gsh.sh \"$@\" | tee /tmp/loggrouper"
+    sudo --preserve-env -u tomcat bin/gsh.sh "$@" | tee /tmp/loggrouper
+  else 
+    echo "grouperContainer; INFO: (gsh file) bin/gsh.sh \"$@\" | tee /tmp/loggrouper"
+    exec bin/gsh.sh "$@" | tee /tmp/loggrouper
+fi
+

@@ -1,0 +1,15 @@
+--- server.xml.turnOnAjp	2020-07-21 22:01:04.000000000 -0400
++++ server.xml.loggingpipe	2020-07-21 21:59:08.000000000 -0400
+@@ -159,9 +159,9 @@
+         <!-- Access log processes all example.
+              Documentation at: /docs/config/valve.html
+              Note: The pattern used is equivalent to using pattern="common" -->
+-        <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs"
+-               prefix="localhost_access_log" suffix=".txt"
+-               pattern="%h %l %u %t &quot;%r&quot; %s %b" />
++        <Valve className="org.apache.catalina.valves.AccessLogValve" directory="/tmp"
++               prefix="tomcat_access_log"
++               rotatable="false" pattern="%h %l %u %t &quot;%r&quot; %s %b" />
+ 
+       </Host>
+     </Engine>

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+prep_daemon
+prep_finish
+setupFiles
+
+runCommand

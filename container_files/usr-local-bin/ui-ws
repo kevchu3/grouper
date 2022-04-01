@@ -1,0 +1,8 @@
+#!/bin/bash
+
+prep_ui
+prep_ws
+prep_finish
+setupFiles
+
+runCommand
