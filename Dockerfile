@@ -63,6 +63,7 @@ ARG GROUPER_CONTAINER_VERSION
 ENV PATH=$PATH:$JAVA_HOME/bin \
     GROUPER_HOME=/opt/grouper/grouperWebapp/WEB-INF \
     GROUPER_CONTAINER_VERSION=$GROUPER_CONTAINER_VERSION
+USER root
 RUN ln -sf /usr/share/zoneinfo/UTC /etc/localtime
 RUN yum update -y \
     && yum install -y cron logrotate python3-pip rsync sudo patch supervisor \
@@ -120,6 +121,7 @@ RUN mkdir -p /opt/tier-support/originalFiles ; \
   cp /opt/grouper/grouperWebapp/WEB-INF/web.xml /opt/tier-support/originalFiles 2>/dev/null
 
 WORKDIR /opt/grouper/grouperWebapp/WEB-INF/
+USER 1001
 EXPOSE 80 443
 HEALTHCHECK NONE
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
